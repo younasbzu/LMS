@@ -24,8 +24,8 @@ class _Admin_Login_screenState extends State<Admin_Login_screen> {
   final formkey = GlobalKey<FormState>();
   @override
   void initState() {
-    namecontroller.text = "nomi@gmail.com";
-    passwordcontroller.text = "123123";
+    namecontroller.text = "muhammadyounisbzu@gmail.com";
+    passwordcontroller.text = "12341234";
     super.initState();
   }
 
