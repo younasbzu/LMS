@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:mybzu/model/usermodel.dart';
+import 'package:mybzu/uttils/confirm_dialog.dart';
 import 'package:mybzu/uttils/custom_txtfield.dart';
 import 'package:mybzu/uttils/flushbar.dart';
 import 'package:mybzu/uttils/static_data.dart';
@@ -97,7 +99,11 @@ class _Login_ScreenState extends State<Login_Screen> {
                       ),
                       TextButton(
                           onPressed: () {
-                            Get.off((const Forgot_Screen()));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Forgot_Screen(),
+                                ));
                           },
                           child: const Text(
                             "Forgot Password",
@@ -136,7 +142,11 @@ class _Login_ScreenState extends State<Login_Screen> {
                                 .data() as Map<String, dynamic>);
                             StaticData.userModel = model;
                             saveDatatoSF(model.userId!, false);
-                            Get.off((const Dashboard()));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Dashboard(),
+                                ));
                           }
                         } else {
                           MyFlushBar.showSimpleFlushBar("Fill All The Fields",

@@ -73,15 +73,27 @@ class _splash_ScreenState extends State<splash_Screen>
         StaticData.userModel = model;
         Timer(Duration.zero, () {
           Timer(const Duration(seconds: 4), () {
-            Get.off((const Dashboard()));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Dashboard(),
+                ));
           });
         });
       }
     } else {
       Future.delayed(const Duration(seconds: 4), () {
         Responsive.isMobile(context)
-            ? Get.off((Login_Screen()))
-            : Get.off((Admin_Login_screen()));
+            ? Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Login_Screen(),
+                ))
+            : Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Admin_Login_screen(),
+                ));
       });
     }
   }

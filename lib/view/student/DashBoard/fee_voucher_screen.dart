@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:mybzu/model/fee_model.dart';
+import 'package:mybzu/uttils/confirm_dialog.dart';
 import 'package:mybzu/view/student/DashBoard/dashboard.dart';
 
 class FeeVoucher extends StatefulWidget {
@@ -233,7 +235,7 @@ class _FeeVoucherState extends State<FeeVoucher> {
                                               BorderRadius.circular(15)),
                                       child: Center(
                                         child: Text(
-                                          "Upload",
+                                          "Download",
                                           style: TextStyle(
                                             fontSize: width * 0.04,
                                             color: Color.fromARGB(

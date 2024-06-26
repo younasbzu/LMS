@@ -1,7 +1,12 @@
+import 'dart:ffi';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:mybzu/model/usermodel.dart';
+import 'package:mybzu/uttils/confirm_dialog.dart';
 import 'package:mybzu/uttils/custom_btn.dart';
 import 'package:mybzu/uttils/custom_txtfield.dart';
 import 'package:mybzu/uttils/flushbar.dart';
@@ -22,6 +27,51 @@ class _Update_PasswordState extends State<Update_Password> {
   final TextEditingController confirmcontroller = TextEditingController();
 
   bool _rememberMe = false;
+  // Function to validate the password
+  bool _validatePassword(String password) {
+    // Reset error message
+
+    // Password length greater than 6
+    if (password.length < 8) {
+      MyFlushBar.showSimpleFlushBar(
+          "Password must be longer than 8 characters.",
+          context,
+          Colors.red,
+          Colors.white);
+      return false;
+    }
+
+    // Contains at least one uppercase letter
+    if (!password.contains(RegExp(r'[A-Z]'))) {
+      MyFlushBar.showSimpleFlushBar(
+          "Uppercase letter is missing.", context, Colors.red, Colors.white);
+      return false;
+    }
+
+    // Contains at least one lowercase letter
+    if (!password.contains(RegExp(r'[a-z]'))) {
+      MyFlushBar.showSimpleFlushBar(
+          "Lowercase letter is missing.", context, Colors.red, Colors.white);
+      return false;
+    }
+
+    // Contains at least one digit
+    if (!password.contains(RegExp(r'[0-9]'))) {
+      MyFlushBar.showSimpleFlushBar(
+          "Digit is missing.", context, Colors.red, Colors.white);
+      return false;
+    }
+
+    // Contains at least one special character
+    if (!password.contains(RegExp(r'[!@#%^&*(),.?":{}|<>]'))) {
+      MyFlushBar.showSimpleFlushBar(
+          "Special character is missing.", context, Colors.red, Colors.white);
+      return false;
+    }
+
+    // If there are no error messages, the password is valid
+    return true;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +81,7 @@ class _Update_PasswordState extends State<Update_Password> {
       appBar: AppBar(
         automaticallyImplyLeading: true,
         title: const Text(
-          "Edit Profile",
+          "Update",
           style: TextStyle(fontSize: 14, color: Colors.white),
         ),
         backgroundColor: const Color.fromARGB(255, 0, 48, 96),
@@ -120,39 +170,43 @@ class _Update_PasswordState extends State<Update_Password> {
                 CustomButton(
                   text: "Submit",
                   onPressed: () async {
-                    if (newcontroller.text == confirmcontroller.text) {
-                      QuerySnapshot snapshot = await FirebaseFirestore.instance
-                          .collection("Users")
-                          .where("userId",
-                              isEqualTo: StaticData.userModel!.userId)
-                          .get();
-                      UserModel model = UserModel.fromMap(
-                          snapshot.docs[0].data() as Map<String, dynamic>);
-                      if (model.password == oldcontroller.text) {
-                        FirebaseFirestore.instance
+                    bool value = _validatePassword(newcontroller.text);
+                    if (value == true) {
+                      if (newcontroller.text == confirmcontroller.text) {
+                        QuerySnapshot snapshot = await FirebaseFirestore
+                            .instance
                             .collection("Users")
-                            .doc(model.userId)
-                            .update({"password": confirmcontroller.text});
-                        // ignore: use_build_context_synchronously
-                        MyFlushBar.showSimpleFlushBar(
-                            "password change Successfully",
-                            context,
-                            Colors.green,
-                            Colors.white);
-                        Future.delayed(const Duration(seconds: 2), () {
-                          Get.off((Login_Screen()));
-                        });
+                            .where("userId",
+                                isEqualTo: StaticData.userModel!.userId)
+                            .get();
+                        UserModel model = UserModel.fromMap(
+                            snapshot.docs[0].data() as Map<String, dynamic>);
+                        if (model.password == oldcontroller.text) {
+                          FirebaseFirestore.instance
+                              .collection("Users")
+                              .doc(model.userId)
+                              .update({"password": confirmcontroller.text});
+                          // ignore: use_build_context_synchronously
+                          MyFlushBar.showSimpleFlushBar(
+                              "password change Successfully",
+                              context,
+                              Colors.green,
+                              Colors.white);
+                          Future.delayed(const Duration(seconds: 2), () {
+                            Get.off((Login_Screen()));
+                          });
+                        } else {
+                          // ignore: use_build_context_synchronously
+                          MyFlushBar.showSimpleFlushBar(
+                              "Old Password Is Incorrect",
+                              context,
+                              Colors.red,
+                              Colors.white);
+                        }
                       } else {
-                        // ignore: use_build_context_synchronously
-                        MyFlushBar.showSimpleFlushBar(
-                            "Old Password Is Incorrect",
-                            context,
-                            Colors.red,
-                            Colors.white);
+                        MyFlushBar.showSimpleFlushBar("Fill Same Password",
+                            context, Colors.red, Colors.white);
                       }
-                    } else {
-                      MyFlushBar.showSimpleFlushBar("Fill Same Password",
-                          context, Colors.red, Colors.white);
                     }
                   },
                 ),
