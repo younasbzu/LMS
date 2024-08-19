@@ -25,6 +25,14 @@ class _MyProfileState extends State<MyProfile> {
     DataRow(cells: [
       DataCell(
         Container(
+          child: Text('Father Name'),
+        ),
+      ),
+      DataCell(Text(StaticData.userModel!.name!)),
+    ]),
+    DataRow(cells: [
+      DataCell(
+        Container(
           child: Text('Email'),
         ),
       ),
@@ -149,14 +157,14 @@ class _MyProfileState extends State<MyProfile> {
                     columns: const [
                       DataColumn(
                         label: Text(
-                          'Field',
+                          'Student Detail',
                           style: TextStyle(
                               fontSize: 16, fontWeight: FontWeight.bold),
                         ),
                       ),
                       DataColumn(
                         label: Text(
-                          'Value',
+                          '',
                           style: TextStyle(
                               fontSize: 16, fontWeight: FontWeight.bold),
                         ),

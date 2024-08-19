@@ -7,12 +7,16 @@ class FeeModel {
   String? ammount;
   String? challanNo;
   String? feeId;
+  String? bankname;
+  String? cardno;
   FeeModel({
     this.title,
     this.dueDate,
     this.ammount,
     this.challanNo,
     this.feeId,
+    this.bankname,
+    this.cardno,
   });
 
   FeeModel copyWith({
@@ -21,6 +25,8 @@ class FeeModel {
     String? ammount,
     String? challanNo,
     String? feeId,
+    String? bankname,
+    String? cardno,
   }) {
     return FeeModel(
       title: title ?? this.title,
@@ -28,6 +34,8 @@ class FeeModel {
       ammount: ammount ?? this.ammount,
       challanNo: challanNo ?? this.challanNo,
       feeId: feeId ?? this.feeId,
+      bankname: bankname ?? this.bankname,
+      cardno: cardno ?? this.cardno,
     );
   }
 
@@ -38,6 +46,8 @@ class FeeModel {
       'ammount': ammount,
       'challanNo': challanNo,
       'feeId': feeId,
+      'bankname': bankname,
+      'cardno': cardno,
     };
   }
 
@@ -48,6 +58,8 @@ class FeeModel {
       ammount: map['ammount'] != null ? map['ammount'] as String : null,
       challanNo: map['challanNo'] != null ? map['challanNo'] as String : null,
       feeId: map['feeId'] != null ? map['feeId'] as String : null,
+      bankname: map['bankname'] != null ? map['bankname'] as String : null,
+      cardno: map['cardno'] != null ? map['cardno'] as String : null,
     );
   }
 
@@ -58,7 +70,7 @@ class FeeModel {
 
   @override
   String toString() {
-    return 'FeeModel(title: $title, dueDate: $dueDate, ammount: $ammount, challanNo: $challanNo, feeId: $feeId)';
+    return 'FeeModel(title: $title, dueDate: $dueDate, ammount: $ammount, challanNo: $challanNo, feeId: $feeId, bankname: $bankname, cardno: $cardno)';
   }
 
   @override
@@ -69,7 +81,9 @@ class FeeModel {
         other.dueDate == dueDate &&
         other.ammount == ammount &&
         other.challanNo == challanNo &&
-        other.feeId == feeId;
+        other.feeId == feeId &&
+        other.bankname == bankname &&
+        other.cardno == cardno;
   }
 
   @override
@@ -78,6 +92,8 @@ class FeeModel {
         dueDate.hashCode ^
         ammount.hashCode ^
         challanNo.hashCode ^
-        feeId.hashCode;
+        feeId.hashCode ^
+        bankname.hashCode ^
+        cardno.hashCode;
   }
 }

@@ -131,7 +131,7 @@ class _Edit_ProfileState extends State<Edit_Profile> {
                       "email": emailcontroller.text,
                       "number": numbercontroller.text,
                       "cnic": cinccontroller.text,
-                      "fname": lnamecontroller.text,
+                      "fname": fnamecontroller.text,
                     });
                     MyFlushBar.showSimpleFlushBar("Update Successfully",
                         context, Colors.green, Colors.white);

@@ -145,6 +145,64 @@ class _FeeVoucherState extends State<FeeVoucher> {
                                             width: width * 0.06,
                                           ),
                                           const Text(
+                                            "Bank Name:",
+                                            style: TextStyle(
+                                                fontSize: 13,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          SizedBox(
+                                            width: width * 0.02,
+                                          ),
+                                          Text(
+                                            model.bankname!,
+                                            style: const TextStyle(
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w400,
+                                                color: Color.fromARGB(
+                                                    255, 173, 168, 173)),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                    Container(
+                                      height: height * 0.03,
+                                      width: width,
+                                      color: Colors.white,
+                                      child: Row(
+                                        children: [
+                                          SizedBox(
+                                            width: width * 0.06,
+                                          ),
+                                          const Text(
+                                            "Card No:",
+                                            style: TextStyle(
+                                                fontSize: 13,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          SizedBox(
+                                            width: width * 0.02,
+                                          ),
+                                          Text(
+                                            model.cardno!,
+                                            style: const TextStyle(
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w400,
+                                                color: Color.fromARGB(
+                                                    255, 173, 168, 173)),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                    Container(
+                                      height: height * 0.03,
+                                      width: width,
+                                      color: Colors.white,
+                                      child: Row(
+                                        children: [
+                                          SizedBox(
+                                            width: width * 0.06,
+                                          ),
+                                          const Text(
                                             "Due Date:",
                                             style: TextStyle(
                                                 fontSize: 13,

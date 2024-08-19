@@ -23,6 +23,8 @@ class _FeeVoucherState extends State<FeeVoucher> {
   TextEditingController updatechallanNocontroller = TextEditingController();
   TextEditingController updatedueDatecontroller = TextEditingController();
   TextEditingController updateammountcontroller = TextEditingController();
+  TextEditingController updatebankcontroller = TextEditingController();
+  TextEditingController updatecardcontroller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     height = MediaQuery.of(context).size.height;
@@ -93,7 +95,7 @@ class _FeeVoucherState extends State<FeeVoucher> {
                                               child: CustomTxtfield(
                                                   height: height * 0.07,
                                                   width: width * 0.26,
-                                                  hintText: "Tital",
+                                                  hintText: "Title",
                                                   inputType: TextInputType.text,
                                                   controller: titlecontroller),
                                             ),
@@ -471,6 +473,64 @@ class _FeeVoucherState extends State<FeeVoucher> {
                                               ),
                                             ),
                                             SizedBox(
+                                              height: height * 0.03,
+                                              width: width,
+                                              child: Row(
+                                                children: [
+                                                  SizedBox(
+                                                    width: width * 0.01,
+                                                  ),
+                                                  const Text(
+                                                    "Bank Name:",
+                                                    style: TextStyle(
+                                                        fontSize: 13,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                  SizedBox(
+                                                    width: width * 0.02,
+                                                  ),
+                                                  Text(
+                                                    "${model.bankname}",
+                                                    style: const TextStyle(
+                                                        fontSize: 12,
+                                                        fontWeight:
+                                                            FontWeight.w400,
+                                                        color: Colors.black),
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: height * 0.03,
+                                              width: width,
+                                              child: Row(
+                                                children: [
+                                                  SizedBox(
+                                                    width: width * 0.01,
+                                                  ),
+                                                  const Text(
+                                                    "Card No:",
+                                                    style: TextStyle(
+                                                        fontSize: 13,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                  SizedBox(
+                                                    width: width * 0.02,
+                                                  ),
+                                                  Text(
+                                                    "${model.cardno}",
+                                                    style: const TextStyle(
+                                                        fontSize: 12,
+                                                        fontWeight:
+                                                            FontWeight.w400,
+                                                        color: Colors.black),
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                            SizedBox(
                                               width: width * 0.04,
                                             ),
                                             Padding(
@@ -486,6 +546,8 @@ class _FeeVoucherState extends State<FeeVoucher> {
                                                       model.dueDate!;
                                                   updatetitlecontroller.text =
                                                       model.title!;
+                                                  updatebankcontroller.text =
+                                                      model.bankname!;
 
                                                   showDialog(
                                                     context: context,
@@ -552,7 +614,7 @@ class _FeeVoucherState extends State<FeeVoucher> {
                                                                           width: width *
                                                                               0.26,
                                                                           hintText:
-                                                                              "Tital",
+                                                                              "Title",
                                                                           inputType: TextInputType
                                                                               .text,
                                                                           controller:
@@ -703,7 +765,10 @@ class _FeeVoucherState extends State<FeeVoucher> {
                                                                       feeId: model
                                                                           .feeId,
                                                                       title: updatetitlecontroller
-                                                                          .text);
+                                                                          .text,
+                                                                      bankname:
+                                                                          updatebankcontroller
+                                                                              .text);
                                                                   FirebaseFirestore
                                                                       .instance
                                                                       .collection(

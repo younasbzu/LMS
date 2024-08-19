@@ -1,10 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+//import 'package:get/get.dart';
+//import 'dart:ffi';
 import 'package:mybzu/model/admin_model.dart';
 import 'package:mybzu/uttils/custom_txtfield.dart';
 import 'package:mybzu/uttils/flushbar.dart';
-import 'package:mybzu/uttils/static_data.dart';
+//import 'package:mybzu/uttils/static_data.dart';
 import 'package:uuid/uuid.dart';
 
 class AdminInfoPage extends StatefulWidget {
