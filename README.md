@@ -1,4 +1,4 @@
-# mybzu
+# LMS
 
 A new Flutter project.
 
